@@ -1,7 +1,6 @@
-# SWP391 NET1806 GROUP 3
+# LITTLE JOY Store - Baby And Mom Milk Store
 
-#### Team Members:
-
-- [Pham Van Tuan Hieu](https://github.com/lion3993vn) - SE171097
-- [Nguyen Kien Minh](https://github.com/tai160903) - SE171090
-- [Luong Cong Bang](https://github.com/w12Ardz) - SE170597 
+<div align="center">
+    <img style="width: 300px;" src="https://firebasestorage.googleapis.com/v0/b/little-joy-2c5d3.appspot.com/o/logo%20git.png?alt=media&token=896298f2-1654-46d4-80b8-3ec8a6a8292e" />
+    <p>Web Api For Milk Store</p>
+</div>
