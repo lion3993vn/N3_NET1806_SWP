@@ -95,11 +95,30 @@ namespace NET1806_LittleJoy.API.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "STAFF,ADMIN")]
+        //[Authorize(Roles = "STAFF,ADMIN")]
         public async Task<IActionResult> AddNewProductAsync([FromBody] ProductRequestModel productRequestModel)
         {
             try
             {
+                // validation
+                if (string.IsNullOrEmpty(productRequestModel.ProductName))
+                {
+                    return BadRequest(new ResponseModels()
+                    {
+                        HttpCode = StatusCodes.Status400BadRequest,
+                        Message = "The product name is required."
+                    });
+                }
+
+                if (productRequestModel.Price <= 0)
+                {
+                    return BadRequest(new ResponseModels()
+                    {
+                        HttpCode = StatusCodes.Status400BadRequest,
+                        Message = "The price must be valid."
+                    });
+                }
+
                 ProductModel productModel = new ProductModel()
                 {
                     ProductName = productRequestModel.ProductName,
@@ -145,7 +164,7 @@ namespace NET1806_LittleJoy.API.Controllers
 
 
         [HttpDelete]
-        [Authorize(Roles = "ADMIN")]
+        //[Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> RemoveProductByIdAsync(int Id)
         {
             try
@@ -181,11 +200,21 @@ namespace NET1806_LittleJoy.API.Controllers
 
 
         [HttpPut]
-        [Authorize(Roles = "STAFF,ADMIN")]
+        //[Authorize(Roles = "STAFF,ADMIN")]
         public async Task<IActionResult> UpdateProductAsync([FromBody] ProductModel productModel)
         {
             try
             {
+
+                if (productModel.Price <= 0)
+                {
+                    return BadRequest(new ResponseModels()
+                    {
+                        HttpCode = StatusCodes.Status400BadRequest,
+                        Message = "The price must be valid."
+                    });
+                }
+
                 ProductModel productModelChange = new ProductModel()
                 {
                     Id = productModel.Id,
@@ -210,7 +239,7 @@ namespace NET1806_LittleJoy.API.Controllers
                     return NotFound(new ResponseModels()
                     {
                         HttpCode = StatusCodes.Status404NotFound,
-                        Message = "Can not update this Product"
+                        Message = "The product does not exist."
                     });
                 }
 
@@ -243,7 +272,7 @@ namespace NET1806_LittleJoy.API.Controllers
         {
             try
             {
-                var result = await _productService.FilterProductPagingAsync(paging,model);
+                var result = await _productService.FilterProductPagingAsync(paging, model);
 
                 if (result != null)
                 {

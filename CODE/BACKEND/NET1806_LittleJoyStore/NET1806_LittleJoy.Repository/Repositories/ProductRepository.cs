@@ -166,5 +166,17 @@ namespace NET1806_LittleJoy.Repository.Repositories
 
             return result;
         }
+
+        async Task<Product?> IProductRepositoty.GetProductByNameAsync(string? productName)
+        {
+                var item = await _context.Products
+                    .Include(p => p.Age)
+                    .Include(p => p.Brand)
+                    .Include(p => p.Cate)
+                    .Include(p => p.Origin)
+                    .SingleOrDefaultAsync(p => p.ProductName == productName);
+
+                return item;
+        }
     }
 }

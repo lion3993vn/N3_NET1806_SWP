@@ -23,6 +23,6 @@ namespace NET1806_LittleJoy.Repository.Repositories.Interface
         public Task<Pagination<Product>> FilterProductPagingAsync (PaginationParameter paging, ProductFilterModel model);
 
         public Task<Pagination<Product>> GetAllProductOutOfStockPagingAsync(PaginationParameter paginationParameter);
-
+        public Task<Product?> GetProductByNameAsync(string? productName);
     }
 }

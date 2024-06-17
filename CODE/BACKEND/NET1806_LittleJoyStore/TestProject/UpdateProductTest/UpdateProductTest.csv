@@ -1,0 +1,7 @@
+﻿Id,CateId,ProductName,Price,Description,Weight,IsActive,Quantity,Image,AgeId,OriginId,BrandId,UnsignProductName,ResponseCode,ErrorMessage
+65,1,Updated Product,150,Updated Description,1600,True,20,updatedimage.jpg,2,2,2,updated_product,200,Update product success
+66,1,Updated Product Name Only,100,Valid Description,1500,True,10,validimage.jpg,1,1,1,updated_product_name_only,200,Update product success
+100,1,Non-existent Product,100,Valid Description,1500,True,10,validimage.jpg,1,1,1,non_existent_product,404,The product does not exist.
+65,1,Invalid Price Product,-1,Valid Description,1500,True,10,validimage.jpg,1,1,1,invalid_price_product,400,The price must be valid.
+
+

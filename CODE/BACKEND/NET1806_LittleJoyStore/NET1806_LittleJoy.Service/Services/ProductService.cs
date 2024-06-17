@@ -113,19 +113,30 @@ namespace NET1806_LittleJoy.Service.Services
 
         public async Task<ProductModel> UpdateProductAsync(ProductModel productModel)
         {
-            productModel.UnsignProductName = StringUtils.ConvertToUnSign(productModel.ProductName);
-
-            var productModify = _mapper.Map<Product>(productModel);
-
-            var productPlace = await _productRepository.GetProductByIdAsync(productModel.Id);
-
-            var updateProduct = await _productRepository.UpdateProductAsync(productModify, productPlace);
-
-            if (updateProduct != null)
+            try
             {
-                return _mapper.Map<ProductModel>(updateProduct);
+                productModel.UnsignProductName = StringUtils.ConvertToUnSign(productModel.ProductName);
+
+                var productModify = _mapper.Map<Product>(productModel);
+
+                var productPlace = await _productRepository.GetProductByIdAsync(productModel.Id);
+                if (productPlace == null)
+                {
+                    throw new Exception("The product does not exist.");
+                }
+
+                var updateProduct = await _productRepository.UpdateProductAsync(productModify, productPlace);
+                if (updateProduct != null)
+                {
+                    return _mapper.Map<ProductModel>(updateProduct);
+                }
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fail to update product: {ex.Message}");
+                return null;
+            }
         }
 
         public async Task<Pagination<ProductModel>> FilterProductPagingAsync(PaginationParameter paging, ProductFilterModel model)

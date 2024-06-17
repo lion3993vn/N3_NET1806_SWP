@@ -1,0 +1,3 @@
+﻿Id,ResponseCode,ErrorMessage
+68,200,Remove product success
+700,404,The product can not remove
