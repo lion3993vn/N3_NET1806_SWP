@@ -9,9 +9,9 @@ using NET1806_LittleJoy.API;
 using Newtonsoft.Json;
 using TestProject.Ultils;
 
-namespace TestProject.TestSendOTP
+namespace TestProject.TestVerifyOTP
 {
-	public class SendOTPTest
+	public class VerifyOTPTest
 	{
 		//setup (don't change)
 		private WebApplicationFactory<Program> _factory;
@@ -35,19 +35,19 @@ namespace TestProject.TestSendOTP
 		}
 
 		//provide data (important), nhớ chỉnh entity nữa nha, bật file entity để hiểu
-		public static IEnumerable<SendOTPEntity> SendOTPTestData()
+		public static IEnumerable<VerifyOTPEntity> VerifyOTPTestData()
 		{
-			var filePath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"D:\FPT\SU24\SWT\N3_NET1806_SWP\CODE\BACKEND\NET1806_LittleJoyStore\TestProject\TestSendOTP\SendOTP.csv"); //nhớ chỉnh file path
-			return DataProvider.GetTestData<SendOTPEntity>(filePath);
+			var filePath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"D:\FPT\SU24\SWT\N3_NET1806_SWP\CODE\BACKEND\NET1806_LittleJoyStore\TestProject\TestVerifyOTP\VerifyOTP.csv"); //nhớ chỉnh file path
+			return DataProvider.GetTestData<VerifyOTPEntity>(filePath);
 		}
 
 
 		//viết testcase, gọi hàm ở trên để truyền file csv vô
-		[Test, TestCaseSource(nameof(SendOTPTestData))]
-		public async Task TestSendOTP(SendOTPEntity testData)
+		[Test, TestCaseSource(nameof(VerifyOTPTestData))]
+		public async Task TestVerifyOTP(VerifyOTPEntity testData)
 		{
-			var url = "/api/authen/send-otp";
-			var json = JsonConvert.SerializeObject(testData.Email);
+			var url = "/api/authen/verify-otp";
+			var json = JsonConvert.SerializeObject(new { email = testData.Email, otpCode = testData.OtpCode });
 
 			Console.WriteLine($"JSON Payload: {json}");
 			var content = new StringContent(json, Encoding.UTF8, "application/json");
