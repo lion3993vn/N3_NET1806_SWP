@@ -8,6 +8,7 @@ namespace TestProject.CreateProductTest
 {
     public class ProductCsvEntity
     {
+        public string? Case { get; set; }
         public int? Id { get; set; }
         public int? CateId { get; set; }
 

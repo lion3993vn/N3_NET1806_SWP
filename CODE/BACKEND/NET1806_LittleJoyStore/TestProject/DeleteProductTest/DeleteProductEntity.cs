@@ -8,6 +8,7 @@ namespace TestProject.DeleteProductTest
 {
     internal class DeleteProductEntity
     {
+        public string? Case { get; set; }
         public int Id { get; set; }
         public int? ResponseCode { get; set; }
 

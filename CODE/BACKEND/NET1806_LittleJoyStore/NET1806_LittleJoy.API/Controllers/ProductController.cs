@@ -183,7 +183,7 @@ namespace NET1806_LittleJoy.API.Controllers
                     return NotFound(new ResponseModels()
                     {
                         HttpCode = StatusCodes.Status404NotFound,
-                        Message = "The product can not remove"
+                        Message = "The product is not exist"
                     });
                 }
             }

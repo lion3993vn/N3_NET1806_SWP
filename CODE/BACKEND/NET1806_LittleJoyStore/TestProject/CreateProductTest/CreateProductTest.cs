@@ -48,6 +48,7 @@ namespace TestProject.CreateProductTest
             var url = "/api/product";
             var json = JsonConvert.SerializeObject(new
             {
+                Case = testData.Case,
                 ProductName = testData.ProductName,
                 Price = testData.Price,
                 Description = testData.Description,
@@ -67,15 +68,20 @@ namespace TestProject.CreateProductTest
             dynamic responseData = JsonConvert.DeserializeObject(responseContent);
 
             // Verify HTTP status code
+            Console.WriteLine($"Test Case: {testData.Case}");
+            
             Assert.AreEqual((HttpStatusCode)testData.ResponseCode, response.StatusCode,
-                            $"Failed for Product: {testData.ProductName}");
+                            $"Failed for Product: {testData.ProductName}\nExpected status code: {(HttpStatusCode)testData.ResponseCode}, but got: {response.StatusCode}");
 
             // Verify error message
-            if (testData.ResponseCode == 400)
-            {
-                Assert.AreEqual(testData.ErrorMessage, (string)responseData.message,
-                                $"Expected error message: {testData.ErrorMessage}, but got: {(string)responseData.message}");
-            }
+           
+            Assert.AreEqual(testData.ErrorMessage, (string)responseData.message,
+                            $"Failed for Product: {testData.ProductName}\nExpected error message: {testData.ErrorMessage}, but got: {(string)responseData.message}");
+
+            Console.WriteLine($"Expected status code: {(HttpStatusCode)testData.ResponseCode}, Actual status code: {response.StatusCode}");
+
+            Console.WriteLine($"Expected error message: {testData.ErrorMessage}, Actual error message: {(string)responseData.message}");
+
         }
 
 

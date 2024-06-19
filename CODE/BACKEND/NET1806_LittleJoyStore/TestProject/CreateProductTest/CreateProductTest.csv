@@ -1,5 +1,5 @@
-﻿Id,CateId,ProductName,Price,Description,Weight,IsActive,Quantity,Image,AgeId,OriginId,BrandId,UnsignProductName,ResponseCode,ErrorMessage
-1,1,Valid Product 2,100,Valid Description,1500,True,10,validimage.jpg,1,1,1,valid_product,200,
-2,1,Product with Optional Fields Blank 2,100,,1500,True,10,,1,1,1,product_with_optional_fields_blank,200,
-3,1,,100,Description without name 2,1500,True,10,image.jpg,1,1,1,description_without_name,400,The product name is required.
-4,2,Product with Invalid Price 2,-1,Valid Description,1500,True,10,image.jpg,1,1,1,product_with_invalid_price,400,The price must be valid.
+﻿Case,Id,CateId,ProductName,Price,Description,Weight,IsActive,Quantity,Image,AgeId,OriginId,BrandId,UnsignProductName,ResponseCode,ErrorMessage
+Valid Product,1,1,Sua VinaMilk,100,Sua Vinamilk,1500,True,10,validimage.jpg,1,1,1,valid_product,200,Product added successfully
+Product with Optional Fields Blank,2,1,Sua Con Bo Cuoi,100,,1500,True,10,,1,1,1,product_with_optional_fields_blank,200,Product added successfully
+Description without name,3,1,,100,Sua Trung Quoc,1500,True,10,image.jpg,1,1,1,description_without_name,400,The product name is required.
+Product with Invalid Price,4,2,Sua My,-1,Valid Description,1500,True,10,image.jpg,1,1,1,product_with_invalid_price,400,The price must be valid.

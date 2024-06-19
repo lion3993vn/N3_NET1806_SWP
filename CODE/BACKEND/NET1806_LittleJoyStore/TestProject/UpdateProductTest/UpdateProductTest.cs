@@ -48,6 +48,7 @@ namespace TestProject.UpdateProductTest
             var url = "/api/product";
             var json = JsonConvert.SerializeObject(new
             {
+                Case = testData.Case,
                 Id = testData.Id,
                 ProductName = testData.ProductName,
                 Price = testData.Price,
@@ -61,7 +62,7 @@ namespace TestProject.UpdateProductTest
                 CateId = testData.CateId,
                 IsActive = testData.IsActive,
                 UnsignProductName = testData.UnsignProductName,
-            });
+            }) ;
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _client.PutAsync(url, content);
 
@@ -76,6 +77,12 @@ namespace TestProject.UpdateProductTest
             // Verify error message
             Assert.AreEqual(testData.ErrorMessage, (string)responseData.message,
                             $"Expected error message: {testData.ErrorMessage}, but got: {(string)responseData.message}");
+
+            Console.WriteLine($"Test Case: {testData.Case}");
+
+            Console.WriteLine($"Expected status code: {(HttpStatusCode)testData.ResponseCode}, Actual status code: {response.StatusCode}");
+
+            Console.WriteLine($"Expected error message: {testData.ErrorMessage}, Actual error message: {(string)responseData.message}");
         }
     }
 }

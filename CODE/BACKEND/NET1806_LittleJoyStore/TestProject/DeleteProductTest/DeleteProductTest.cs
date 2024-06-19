@@ -46,12 +46,6 @@ namespace TestProject.DeleteProductTest
         public async Task TestDeleteProduct(DeleteProductEntity testData)
         {
             var url = $"/api/product?Id={testData.Id}";
-            //var json = JsonConvert.SerializeObject(new
-            //{
-            //    Id = testData.Id,
-            //});
-            //var content = new StringContent(json, Encoding.UTF8, "application/json");
-            //var response = await _client.DeleteAsync(url, content);
             var response = await _client.DeleteAsync(url);
 
 
@@ -66,6 +60,11 @@ namespace TestProject.DeleteProductTest
             // Verify error message
             Assert.AreEqual(testData.ErrorMessage, (string)responseData.message,
                             $"Expected error message: {testData.ErrorMessage}, but got: {(string)responseData.message}");
+
+            Console.WriteLine($"Test Case: {testData.Case}, Product ID: {testData.Id}");
+            Console.WriteLine($"Expected status code: {(HttpStatusCode)testData.ResponseCode}, Actual status code: {response.StatusCode}");
+
+            Console.WriteLine($"Expected error message: {testData.ErrorMessage}, Actual error message: {(string)responseData.message}");
         }
     }
 }
