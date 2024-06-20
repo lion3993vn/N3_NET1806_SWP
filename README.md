@@ -6,7 +6,7 @@
 </div>
 
 #### Introduction
-The LAVEN STORE is a team project for SWP391 course. This web is selling milk for baby and mom and they can buy it online.
+The Little Joy is a team project for SWP391 course. This web is selling milk for baby and mom and they can buy it online.
 Customer and administrator can use this web
 
 #### System Design:
@@ -20,12 +20,21 @@ Technologies:
 - HomePage
 ![HomePage](REPORT/UI/MainPage.png)
 
+- ShopPage
+![ShopPage](REPORT/UI/ShopPage.png)
+
+- Login
+![ShopPage](REPORT/UI/Login.png)
+
+- Profile
+![ShopPage](REPORT/UI/Profile.png)
+
 #### SPRINT SETUP
-- [Pham Van Tuan Hieu](https://github.com/lion3993vn) Authen (Verify Login - Verify refresh token)
-- [Lương Công Bằng](https://github.com/cong-bang) Authen (Verify Register Data - Verify Confirm Email)
-- [Nguyễn Kiến Minh](https://github.com/nguyenkienminh) Product (Verify retrieve paginated product list - Retrieve  product by ID - Create product category)
-- [Nguyễn Gia Bảo Anh](https://github.com/alicee-19) Authen (Verify reset password - Verify OTP for reset password - Sending OTP for reset password)
-- [Võ Thị Mai Hoa](https://github.com/vohoa2004) Product (Verify create product - Update product by ID - Delete product by ID)
+- [Pham Van Tuan Hieu](https://github.com/lion3993vn) UC (2,4)
+- [Lương Công Bằng](https://github.com/cong-bang) UC (1)
+- [Nguyễn Kiến Minh](https://github.com/nguyenkienminh) UC (9)
+- [Nguyễn Gia Bảo Anh](https://github.com/alicee-19)  UC(3)
+- [Võ Thị Mai Hoa](https://github.com/vohoa2004) UC(5,6,7)
 
 #### References:
 - Figma: [LittleJoyStore]([https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1](https://www.figma.com/design/27qQ7FoSlia57I2wMlbEcv/V1.0?node-id=67-802&t=JAQ8IF1EJOxbl3QW-1))
