@@ -37,4 +37,4 @@ Technologies:
 - [Võ Thị Mai Hoa](https://github.com/vohoa2004) UC(5,6,7)
 
 #### References:
-- Figma: [LittleJoyStore]([https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1](https://www.figma.com/design/27qQ7FoSlia57I2wMlbEcv/V1.0?node-id=67-802&t=JAQ8IF1EJOxbl3QW-1))
+- Figma: ![LittleJoyStore]([https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1](https://www.figma.com/design/27qQ7FoSlia57I2wMlbEcv/V1.0?node-id=67-802&t=JAQ8IF1EJOxbl3QW-1))
