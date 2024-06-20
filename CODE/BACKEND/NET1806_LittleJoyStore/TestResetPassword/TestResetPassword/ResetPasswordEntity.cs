@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject.TestVerifyOTP
+namespace TestResetPassword.TestResetPassword
 {
-	public class VerifyOTPEntity
+	public class ResetPasswordEntity
 	{
 		public string Email { get; set; }
-		public int OtpCode { get; set; }
+		public string Password { get; set; }
+		public string ConfirmPassword { get; set; }
 		public int ResponseCode { get; set; }
 	}
 }

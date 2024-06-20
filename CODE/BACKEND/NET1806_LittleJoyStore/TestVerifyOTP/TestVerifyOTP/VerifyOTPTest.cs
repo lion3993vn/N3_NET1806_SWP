@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using NET1806_LittleJoy.API;
 using Newtonsoft.Json;
-using TestProject.TestSendOTP;
 using TestProject.Ultils;
 
-namespace TestProject.TestResetPassword
+namespace TestVerifyOTP.TestVerifyOTP
 {
-	public class ResetPasswordTest
+	public class VerifyOTPTest
 	{
 		//setup (don't change)
 		private WebApplicationFactory<Program> _factory;
@@ -36,24 +35,19 @@ namespace TestProject.TestResetPassword
 		}
 
 		//provide data (important), nhớ chỉnh entity nữa nha, bật file entity để hiểu
-		public static IEnumerable<ResetPasswordEntity> ResetPasswordTestData()
+		public static IEnumerable<VerifyOTPEntity> VerifyOTPTestData()
 		{
-			var filePath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"D:\FPT\SU24\SWT\N3_NET1806_SWP\CODE\BACKEND\NET1806_LittleJoyStore\TestProject\TestResetPassword\ResetPassword.csv"); //nhớ chỉnh file path
-			return DataProvider.GetTestData<ResetPasswordEntity>(filePath);
+			var filePath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"D:\FPT\SU24\SWT\N3_NET1806_SWP\CODE\BACKEND\NET1806_LittleJoyStore\TestVerifyOTP\TestVerifyOTP\VerifyOTP.csv"); //nhớ chỉnh file path
+			return DataProvider.GetTestData<VerifyOTPEntity>(filePath);
 		}
 
 
 		//viết testcase, gọi hàm ở trên để truyền file csv vô
-		[Test, TestCaseSource(nameof(ResetPasswordTestData))]
-		public async Task TestResetPassword(ResetPasswordEntity testData)
+		[Test, TestCaseSource(nameof(VerifyOTPTestData))]
+		public async Task TestVerifyOTP(VerifyOTPEntity testData)
 		{
-			var url = "/api/authen/forgot-password";
-			var json = JsonConvert.SerializeObject(new 
-			{
-				email=testData.Email,
-				password = testData.Password,
-				confirmPassword = testData.ConfirmPassword
-			});
+			var url = "/api/authen/verify-otp";
+			var json = JsonConvert.SerializeObject(new { email = testData.Email, otpCode = testData.OtpCode });
 
 			Console.WriteLine($"JSON Payload: {json}");
 			var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -68,10 +62,11 @@ namespace TestProject.TestResetPassword
 			dynamic responseData = JsonConvert.DeserializeObject(responseContent);
 
 			//// Truy cập thông điệp từ đối tượng JSON
-			string message =  responseData.message; // Thay "message" bằng tên trường chứa thông điệp trong JSON của bạn
+			string message = responseData.message; // Thay "message" bằng tên trường chứa thông điệp trong JSON của bạn
+
 			TestContext.WriteLine(message);
 
-			Assert.AreEqual((HttpStatusCode)testData.ResponseCode, response.StatusCode,
+			Assert.AreEqual((HttpStatusCode)testData.ResponseCode, response.StatusCode, 
 				$"Failed for Email: {testData.Email}");
 		}
 	}
