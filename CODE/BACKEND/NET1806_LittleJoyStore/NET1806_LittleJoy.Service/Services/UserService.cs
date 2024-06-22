@@ -17,6 +17,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace NET1806_LittleJoy.Service.Services
 {
@@ -62,7 +63,7 @@ namespace NET1806_LittleJoy.Service.Services
                 return new AuthenModel()
                 {
                     HttpCode = 401,
-                    Message = "Account does not exist"
+                    Message = "Tài khoản không tồn tại"
                 };
             }
             else
@@ -70,6 +71,15 @@ namespace NET1806_LittleJoy.Service.Services
                 var checkPassword = PasswordUtils.VerifyPassword(password, user.PasswordHash);
                 if (checkPassword)
                 {
+                    if (!user.ConfirmEmail)
+                    {
+                        return new AuthenModel()
+                        {
+                            HttpCode = 401,
+                            Message = "Tài khoản chưa xác thực email"
+                        };
+                    }
+
                     var accessToken = await GenerateAccessToken(username, user);
                     var refeshToken = GenerateRefreshToken(username);
 
@@ -85,7 +95,7 @@ namespace NET1806_LittleJoy.Service.Services
                     return new AuthenModel()
                     {
                         HttpCode = 400,
-                        Message = "Wrong Password"
+                        Message = "Sai mật khẩu"
                     };
                 }
             }
@@ -130,7 +140,7 @@ namespace NET1806_LittleJoy.Service.Services
                 return new AuthenModel
                 {
                     HttpCode = 401,
-                    Message = "User does not exits."
+                    Message = "Tài khoản không tồn tại"
                 };
             }
             catch (Exception ex)
@@ -162,11 +172,11 @@ namespace NET1806_LittleJoy.Service.Services
                     var checkUsername = await _userRepository.GetUserByUserNameAsync(newUser.UserName);
                     if (checkEmail != null)
                     {
-                        throw new Exception("Account already exists.");
+                        throw new Exception("Tài khoản đã tồn tại");
                     }
                     else if (checkUsername != null)
                     {
-                        throw new Exception("Username already exists.");
+                        throw new Exception("Tài khoản đã tồn tại");
                     }
 
                     newUser.PasswordHash = PasswordUtils.HashPassword(model.Password);
@@ -205,12 +215,12 @@ namespace NET1806_LittleJoy.Service.Services
 
             if (checkUser == null)
             {
-                throw new Exception("Account does not exist");
+                throw new Exception("Tài khoản không tồn tại");
             }
 
             if (checkUser.GoogleId != null)
             {
-                throw new Exception("Account cannot reset password");
+                throw new Exception("Tài khoản không thể thực hiện điều này");
             }
 
             var otp = await _otpService.AddNewOtp(email);
@@ -304,16 +314,51 @@ namespace NET1806_LittleJoy.Service.Services
             return userDetailModel;
         }
 
+        public async Task<UserModel?> GetUserByNameAsync(string name)
+        {
+            var userDetail = await _userRepository.GetUserByUserNameAsync(name);
+            if (userDetail == null)
+            {
+                return null;
+            }
+
+            var userDetailModel = _mapper.Map<UserModel>(userDetail);
+
+            return userDetailModel;
+        }
+
         public async Task<bool?> AddUserAsync(UserModel model, string mainAddress)
         {
             try
             {
 
+                if(model.UserName != null)
+                {
+                    var checkUsername = await _userRepository.GetUserByUserNameAsync(model.UserName);
+
+                    if (checkUsername != null)
+                    {
+                        throw new Exception("Tài khoản đã tồn tại");
+                    }
+                }
+                
                 if (model.PhoneNumber != null)
                 {
                     if (StringUtils.IsValidPhoneNumber(model.PhoneNumber) == false)
                     {
-                        return false;
+                        throw new Exception("Wrong Phone Number Format");
+                    }
+                    else
+                    {
+                        var listUser = await _userRepository.GetListUserAsync();
+
+                        foreach (var item in listUser)
+                        {
+                            if (item.PhoneNumber.Equals(model.PhoneNumber))
+                            {
+                                throw new Exception("Phone Number is exist");
+                            }
+                        }
                     }
                 }
 
@@ -321,7 +366,16 @@ namespace NET1806_LittleJoy.Service.Services
                 {
                     if (StringUtils.IsValidEmail(model.Email) == false)
                     {
-                        return false;
+                        throw new Exception("Wrong Email Format");
+                    }
+                    else
+                    {
+                        var checkEmail = await _userRepository.GetUserByEmailAsync(model.Email);
+                        
+                        if (checkEmail != null)
+                        {
+                            throw new Exception("Account already exists.");
+                        }
                     }
                 }
 
@@ -337,7 +391,7 @@ namespace NET1806_LittleJoy.Service.Services
                 }
 
                 userInfo.Status = true;
-                userInfo.ConfirmEmail = false;
+                userInfo.ConfirmEmail = true;
                 userInfo.Points = 0;
 
                 if (userInfo.Fullname != null)
@@ -361,8 +415,8 @@ namespace NET1806_LittleJoy.Service.Services
             }
             catch (Exception ex)
             {
-
-                return false;
+                throw;
+                
             }
         }
 
@@ -380,6 +434,12 @@ namespace NET1806_LittleJoy.Service.Services
 
         public async Task<UserModel> UpdateUserAsync(UserModel model, string mainAddress)
         {
+
+            if(model.RoleId == null)
+            {
+                return null;
+            }
+
             var userModify = _mapper.Map<User>(model);
 
             var userPlace = await _userRepository.GetUserByIdAsync(userModify.Id);
@@ -403,7 +463,19 @@ namespace NET1806_LittleJoy.Service.Services
             {
                 if (StringUtils.IsValidPhoneNumber(userModify.PhoneNumber) == false)
                 {
-                    return null;
+                    throw new Exception("Wrong Phone Number Format");
+                }
+                else
+                {
+                    var listUser = await _userRepository.GetListUserAsync();
+
+                    foreach (var item in listUser)
+                    {
+                        if (item.PhoneNumber.Equals(model.PhoneNumber) && item.Id != model.Id)
+                        {
+                            throw new Exception("Phone Number is exist");
+                        }
+                    }
                 }
             }
             else
@@ -470,7 +542,7 @@ namespace NET1806_LittleJoy.Service.Services
 
             if (userPlace == null)
             {
-                return null;
+                throw new Exception("Tài khoản không tồn tại");
             }
 
             if (userModify.Fullname != "".Trim() && userModify.Fullname != null)
@@ -487,7 +559,19 @@ namespace NET1806_LittleJoy.Service.Services
             {
                 if (StringUtils.IsValidPhoneNumber(userModify.PhoneNumber) == false)
                 {
-                    return null;
+                    throw new Exception("Wrong Phone Number Format");
+                }
+                else
+                {
+                    var listUser = await _userRepository.GetListUserAsync();
+
+                    foreach (var item in listUser)
+                    {
+                        if (item.PhoneNumber.Equals(model.PhoneNumber) && item.Id != model.Id)
+                        {
+                            throw new Exception("Phone Number is exist");
+                        }
+                    }
                 }
             }
             else
@@ -501,6 +585,8 @@ namespace NET1806_LittleJoy.Service.Services
             }
 
             userModify.Status = userPlace.Status;
+            var Role = await _roleRepository.GetRoleByNameAsync("USER");
+            userModify.RoleId = Role.Id;
 
             var updateUser = await _userRepository.UpdateUserAsync(userModify, userPlace);
 
@@ -511,40 +597,53 @@ namespace NET1806_LittleJoy.Service.Services
             return null;
         }
 
-        public async Task<string> ChangePasswordUserRoleAsync(ChangePasswordModel model)
+        public async Task<bool?> ChangePasswordUserRoleAsync(ChangePasswordModel model)
         {
-
-            var user = await _userRepository.GetUserByIdAsync(model.Id);
-
-            if (user == null)
+            try
             {
-                return null;
-            }
+                var user = await _userRepository.GetUserByIdAsync(model.Id);
 
-            var checkPassword = PasswordUtils.VerifyPassword(model.OldPassword, user.PasswordHash);
+                if (user == null)
+                {
+                    throw new Exception("Tài khoản không tồn tại");
+                }
 
-            if (checkPassword)
+                var checkPassword = PasswordUtils.VerifyPassword(model.OldPassword, user.PasswordHash);
+
+                if (checkPassword)
+                {
+
+                    if (model.OldPassword.Equals(model.NewPassword))
+                    {
+                        throw new Exception("Mật khẩu mới không được giống mật khẩu cũ");
+                    }
+                    else
+                    {
+
+                        AddPasswordModel addPassword = new AddPasswordModel()
+                        {
+                            Email = user.Email,
+                            Password = model.NewPassword,
+                            ConfirmPassword = model.ConfirmPassword,
+                        };
+
+                        var result = await AddNewPassword(addPassword);
+
+                        if (result == true)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                throw new Exception( "Mật khẩu không đúng");
+            }catch (Exception ex)
             {
-                AddPasswordModel addPassword = new AddPasswordModel()
-                {
-                    Email = user.Email,
-                    Password = model.NewPassword,
-                    ConfirmPassword = model.ConfirmPassword,
-                };
-
-                var result = await AddNewPassword(addPassword);
-
-                if (result == true)
-                {
-                    return "Add Password Success";
-                }
-                else
-                {
-                    return "Add Failed";
-                }
+                throw ex;
             }
-
-            return "Password Incorrect";
 
         }
 
@@ -577,7 +676,7 @@ namespace NET1806_LittleJoy.Service.Services
         public async Task<bool> ConfirmEmailAsync(string token)
         {
             var user = await _userRepository.GetUserByConfirmToken(token);
-            if(user == null)
+            if (user == null)
             {
                 return false;
             }
@@ -602,7 +701,7 @@ namespace NET1806_LittleJoy.Service.Services
             };
             var payload = await GoogleJsonWebSignature.ValidateAsync(credental, settings);
 
-            if(payload == null)
+            if (payload == null)
             {
                 throw new Exception("Credental không hợp lệ");
             }
@@ -610,9 +709,9 @@ namespace NET1806_LittleJoy.Service.Services
             var existUser = await _userRepository.GetUserByEmailAsync(payload.Email);
 
             //nếu có user
-            if(existUser != null)
+            if (existUser != null)
             {
-                if(existUser.Status == false)
+                if (existUser.Status == false)
                 {
                     throw new Exception("Tài khoản đã bị cấm");
                 }
@@ -622,11 +721,12 @@ namespace NET1806_LittleJoy.Service.Services
                 return new AuthenModel()
                 {
                     HttpCode = 200,
-                    Message = "Login with Google sucessfully",
+                    Message = "Login Google thành công",
                     AccessToken = accessToken,
                     RefreshToken = refreshToken
                 };
-            } else
+            }
+            else
             {
                 //create new user
                 using (var transaction = await _userRepository.BeginTransactionAsync())
