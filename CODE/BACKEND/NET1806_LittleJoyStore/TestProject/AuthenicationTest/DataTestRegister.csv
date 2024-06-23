@@ -1,0 +1,10 @@
+﻿FullName,UserName,Email,PhoneNumber,Password,ResponseCode
+Lương Công Bằng,bang,banglcse171033@fpt.edu.vn,0987654321,1234567Bang,400
+"",min,minh@fpt.edu.vn,0987654321,1234567Ming,400
+Ng Kien Min,min,minh123@fpt.edu.vn,"",123,400
+Pham Tuan Hieu,min,hieu@,0987654321,123,400
+Pham Tuan Hieu,cong-bang,banglcse171033@fpt.edu.vn,092340987,1234567890,400
+LCB,bin2k3,bin1234@1234,0123456789,"",400
+Test4,test4,test4@gmail.com,0123456789,test1234567,400
+Test5,test5,test5@gmail.com,0123409854,test1234657,200
+
