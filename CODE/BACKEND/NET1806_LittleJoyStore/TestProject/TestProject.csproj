@@ -27,4 +27,10 @@
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ChangePasswordTest\" />
+    <Folder Include="UpdateAddressTest\" />
+    <Folder Include="UpdateUserRoleTest\" />
+  </ItemGroup>
+
 </Project>
