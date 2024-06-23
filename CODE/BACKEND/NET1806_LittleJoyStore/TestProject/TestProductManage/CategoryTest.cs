@@ -1,17 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using NET1806_LittleJoy.API;
-using NET1806_LittleJoy.API.ViewModels.RequestModels;
 using Newtonsoft.Json;
-using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using TestProject.DemoTest;
+using TestProject.Test_ProductManage;
 using TestProject.Ultils;
 
-namespace TestProject.DemoTest
+namespace TestProject.TestProductManage
 {
-    public class Tests
+    public class CategoryTest
     {
         //setup (don't change)
         private WebApplicationFactory<Program> _factory;
@@ -34,22 +36,21 @@ namespace TestProject.DemoTest
         }
 
         //provide data (important), nhớ chỉnh entity nữa nha, bật file entity để hiểu
-        public static IEnumerable<LoginCsvEntity> LoginTestData()
+        public static IEnumerable<CategoryCsvEntity> CategoryAddData()
         {
-            var filePath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\..\TestProject\DemoTest\DataTest.csv"); //nhớ chỉnh file path
-            return DataProvider.GetTestData<LoginCsvEntity>(filePath);
+            var filePath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\..\TestProject\TestProductManage\CreateCategory.csv"); //nhớ chỉnh file path
+            return DataProvider.GetTestData<CategoryCsvEntity>(filePath);
         }
 
 
         //viết testcase, gọi hàm ở trên để truyền file csv vô
-        [Test, TestCaseSource(nameof(LoginTestData))]
-        public async Task TestSuccessLogin(LoginCsvEntity testData)
+        [Test, TestCaseSource(nameof(CategoryAddData))]
+        public async Task TestCategoryAddData(CategoryCsvEntity testData)
         {
-            var url = "/api/authen/login";
-            var json = JsonConvert.SerializeObject(new  
-            {
-                username = testData.Username,
-                password = testData.Password,
+            var url = "/api/category";
+            var json = JsonConvert.SerializeObject(new
+            {   
+                CategoryName = testData.CategoryName
             });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _client.PostAsync(url, content);
@@ -57,16 +58,18 @@ namespace TestProject.DemoTest
             //nếu muốn đọc json từ cái trả về thì
 
             //// Đọc nội dung phản hồi JSON
-            //string responseContent = await response.Content.ReadAsStringAsync();
+            string responseContent = await response.Content.ReadAsStringAsync();
 
             //// Chuyển đổi nội dung JSON thành đối tượng (nếu cần thiết)
-            //dynamic responseData = JsonConvert.DeserializeObject(responseContent);
+            dynamic responseData = JsonConvert.DeserializeObject(responseContent);
 
             //// Truy cập thông điệp từ đối tượng JSON
-            //string message = responseData.message; // Thay "message" bằng tên trường chứa thông điệp trong JSON của bạn
+            string message = responseData.message; // Thay "message" bằng tên trường chứa thông điệp trong JSON của bạn
+
+            await Console.Out.WriteLineAsync(message);
 
             Assert.AreEqual((HttpStatusCode)testData.ResponseCode, response.StatusCode,
-                            $"Failed for Username: {testData.Username}, Password: {testData.Password}");
+                            $"Failed for CategoryName:{testData.CategoryName}");
         }
     }
 }

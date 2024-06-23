@@ -64,6 +64,21 @@ namespace NET1806_LittleJoy.Service.Services
         {
             try
             {
+                if(categoryModel.CategoryName.Equals(""))
+                {
+                    throw new Exception("Không được tạo categoryName trống");
+                }
+
+                var listCate = await _categoryRepo.GetAllCate();
+
+                foreach (var item1 in listCate)
+                {
+                    if (item1.CategoryName.Equals(categoryModel.CategoryName))
+                    {
+                        throw new Exception("Không được tạo categoryName trùng lặp");
+                    }
+                }
+
                 var cateInfo = _mapper.Map<Category>(categoryModel);
 
                 var item = await _categoryRepo.AddCategoryAsync(cateInfo);
@@ -78,7 +93,8 @@ namespace NET1806_LittleJoy.Service.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"Fail to add Category {ex.Message}");
-                return false;
+                throw ex;
+                
             }
         }
 
