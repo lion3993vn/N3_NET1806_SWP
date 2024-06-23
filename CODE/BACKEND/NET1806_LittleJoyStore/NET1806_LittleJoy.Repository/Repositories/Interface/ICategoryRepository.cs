@@ -20,7 +20,7 @@ namespace NET1806_LittleJoy.Repository.Repositories.Interface
 
         public Task<ICollection<Product>> GetProductsByCategoryIdAsync(int cateId);
 
-        public Task<Category> UpdateCategoryAsync(Category cateModify, Category catePlace);
+        public Task<Category> UpdateCategoryAsync(Category cateModify);
 
         public Task<ICollection<Category>> GetAllCate();
     }
