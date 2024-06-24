@@ -73,9 +73,8 @@ Technologies:
 |                       | UC28 - Customer can update a delivery address                               |  
 |                                                                                                     |
 | FeedBack              | UC22 - Customer - Create Feedback                                           |                                
-|                       |                                                                             |         
-|                       |                                                                             |  
-|                       |                                                                             |
+|                       | UC23 - User Update Feedback                                                 |         
+|                       | UC24 - User Delete Feedback                                                 |  
 |                       |                                                                             |
 |                                                                                                     |
 | BLog                  | UC39 - Admin/Staff can create Blog                                          |                                
