@@ -54,7 +54,52 @@ Technologies:
 | Nguyễn Gia Bảo Anh    | (https://github.com/alicee-19)                                              | UC(3)               |    
 | Võ Thị Mai Hoa        | (https://github.com/vohoa2004)                                              | UC(5,6,7)           |    
 
+#### SPRINT BUSINESS FLOW
 
+| Epic                  |                Use Case                                                     |                           
+|-----------------------|-----------------------------------------------------------------------------|       
+| Manage User Account   | UC35 - Admin can ViewUserListPaging                                         |                                
+|                       | UC36 - Admin can Add User                                                   |        
+|                       | UC37 - Admin can Update User                                                |   
+|                       | UC38 - Admin can Delete User                                                |
+|                                                                                                     |
+| Manage Profile        | UC24 - User can change their profile information                            |                                
+|                                                                                                     |
+| Change Password       | UC25 - User can change their account password                               |
+|                                                                                                     |
+| Manage Default Address| UC26 - Customer can add a delivery address                                  |                                
+|                       | UC27 - Customer can delete a delivery address                               |        
+|                       | UC28 - Customer can update a delivery address                               |  
+|                                                                                                     |
+| FeedBack              | UC21 - User can view Feedback                                               |                                
+|                       | UC22 - Customer - Create Feedback                                           |        
+|                       |                                                                             |  
+|                       |                                                                             |
+|                       |                                                                             |
+|                                                                                                     |
+| BLog                  | UC39 - Admin/Staff can create Blog                                          |                                
+|                       | UC40 - Admin/Staff can update Blog                                          |        
+|                       | UC41 - Admin/Staff can delete Blog                                          |  
+|                       | UC42 - Guest can view Blog                                                  |
+|                       |                                                                             |
+|                                                                                                     |
+| Manage User Orders    |                                                                             |                                
+|                       |                                                                             |        
+|                       |                                                                             |  
+|                       |                                                                             |
+|                       |                                                                             | 
+|                                                                                                     |
+| Manage Order Admin    |                                                                             |                                
+|                       |                                                                             |         
+|                       |                                                                             |  
+|                       |                                                                             |
+|                       |                                                                             |
+|                                                                                                     |
+| Purchase Product      |                                                                             |                                
+|                       |                                                                             |        
+|                       |                                                                             |  
+|                       |                                                                             |
+|                       |                                                                             |
 
 #### References:
 - Figma: ![LittleJoyStore]([https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1](https://www.figma.com/design/27qQ7FoSlia57I2wMlbEcv/V1.0?node-id=67-802&t=JAQ8IF1EJOxbl3QW-1))
