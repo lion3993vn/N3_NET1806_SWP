@@ -30,11 +30,31 @@ Technologies:
 ![ShopPage](REPORT/UI/Profile.png)
 
 #### SPRINT SETUP
-- [Pham Van Tuan Hieu](https://github.com/lion3993vn) UC (2,4)
-- [Lương Công Bằng](https://github.com/cong-bang) UC (1)
-- [Nguyễn Kiến Minh](https://github.com/nguyenkienminh) UC (9)
-- [Nguyễn Gia Bảo Anh](https://github.com/alicee-19)  UC(3)
-- [Võ Thị Mai Hoa](https://github.com/vohoa2004) UC(5,6,7)
+|-----------------------|-----------------------------------------------------------------------------|
+| Epic                  |                Use Case                                                     |                           
+|-----------------------|-----------------------------------------------------------------------------|       
+| Authenticate          | UC01 - Guest can register a user account                                    |                                
+|                       | UC02 - Guest can login to their user account                                |        
+|                       | UC03 - Guest can select Forget Password to retrieve access to their account |  
+|                       | UC04 - Guest can login to their user account via google platform            |
+|-----------------------|-----------------------------------------------------------------------------|       
+| Product Management    | UC05 - Admin and Staff can Add product                                      |                                
+|                       | UC06 - Admin and Staff can update Product                                   |        
+|                       | UC07 - Admin and Staff can Delete Product                                   |  
+|                       | UC08 - Admin and Staff can view Product Paginating                          |
+|                       | UC09 - Admin and Staff can View Product out of stock                        |
+|-----------------------|-----------------------------------------------------------------------------|
+
+|-----------------------|-----------------------------------------------------------------------------|---------------------|
+| Name                  |                Git Account                                                  |        UseCase      |
+|-----------------------|-----------------------------------------------------------------------------|---------------------|    
+| Pham Van Tuan Hieu    | (https://github.com/lion3993vn)                                             | UC (2,4)            |                                    
+| Lương Công Bằng       | (https://github.com/cong-bang)                                              | UC (1)              |            
+| Nguyễn Kiến Minh      | (https://github.com/nguyenkienminh)                                         | UC (9)              |      
+| Nguyễn Gia Bảo Anh    | (https://github.com/alicee-19)                                              | UC(3)               |    
+| Võ Thị Mai Hoa        | (https://github.com/vohoa2004)                                              | UC(5,6,7)           |    
+|-----------------------|-----------------------------------------------------------------------------|---------------------|    
+
 
 #### References:
 - Figma: ![LittleJoyStore]([https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1](https://www.figma.com/design/27qQ7FoSlia57I2wMlbEcv/V1.0?node-id=67-802&t=JAQ8IF1EJOxbl3QW-1))
