@@ -54,6 +54,7 @@ Technologies:
 | Nguyễn Gia Bảo Anh    | (https://github.com/alicee-19)                                              | UC(3)               |    
 | Võ Thị Mai Hoa        | (https://github.com/vohoa2004)                                              | UC(5,6,7)           |    
 
+
 #### SPRINT BUSINESS FLOW
 
 | Epic                  |                Use Case                                                     |                           
@@ -71,8 +72,8 @@ Technologies:
 |                       | UC27 - Customer can delete a delivery address                               |        
 |                       | UC28 - Customer can update a delivery address                               |  
 |                                                                                                     |
-| FeedBack              | UC21 - User can view Feedback                                               |                                
-|                       | UC22 - Customer - Create Feedback                                           |        
+| FeedBack              | UC22 - Customer - Create Feedback                                           |                                
+|                       |                                                                             |         
 |                       |                                                                             |  
 |                       |                                                                             |
 |                       |                                                                             |
