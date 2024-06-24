@@ -30,7 +30,7 @@ Technologies:
 ![ShopPage](REPORT/UI/Profile.png)
 
 #### SPRINT SETUP
-|-----------------------|-----------------------------------------------------------------------------|
+
 | Epic                  |                Use Case                                                     |                           
 |-----------------------|-----------------------------------------------------------------------------|       
 | Authenticate          | UC01 - Guest can register a user account                                    |                                
@@ -43,9 +43,9 @@ Technologies:
 |                       | UC07 - Admin and Staff can Delete Product                                   |  
 |                       | UC08 - Admin and Staff can view Product Paginating                          |
 |                       | UC09 - Admin and Staff can View Product out of stock                        |
-|-----------------------|-----------------------------------------------------------------------------|
 
-|-----------------------|-----------------------------------------------------------------------------|---------------------|
+
+
 | Name                  |                Git Account                                                  |        UseCase      |
 |-----------------------|-----------------------------------------------------------------------------|---------------------|    
 | Pham Van Tuan Hieu    | (https://github.com/lion3993vn)                                             | UC (2,4)            |                                    
@@ -53,7 +53,7 @@ Technologies:
 | Nguyễn Kiến Minh      | (https://github.com/nguyenkienminh)                                         | UC (9)              |      
 | Nguyễn Gia Bảo Anh    | (https://github.com/alicee-19)                                              | UC(3)               |    
 | Võ Thị Mai Hoa        | (https://github.com/vohoa2004)                                              | UC(5,6,7)           |    
-|-----------------------|-----------------------------------------------------------------------------|---------------------|    
+
 
 
 #### References:
