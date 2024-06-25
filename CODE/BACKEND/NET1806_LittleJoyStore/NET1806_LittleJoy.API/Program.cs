@@ -118,7 +118,6 @@ namespace NET1806_LittleJoy.API
             //builder.Services.AddDbContext<LittleJoyContext>(options =>
             //        options.UseSqlServer(connection));
 
-
             // ==================== NO EDIT OR REMOVE COMMENT =======================
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -157,6 +156,14 @@ namespace NET1806_LittleJoy.API
 
             builder.Services.AddScoped<IAddressRepository, AddressRepository>();
             builder.Services.AddScoped<IAddressService, AddressService>();
+
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
+
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+
+            builder.Services.AddScoped<IVNPayService, VNPayService>();
+            builder.Services.AddScoped<IPointsMoneyRepository, PointsMoneyRepository>();
 
             builder.Services.AddTransient<IMailService, MailService>();
 
