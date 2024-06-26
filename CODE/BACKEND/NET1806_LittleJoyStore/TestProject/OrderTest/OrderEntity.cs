@@ -31,5 +31,6 @@ namespace TestProject.OrderTest
     public class OrderCode
     {
         public int Code { get; set; }
+        public int ResponeCode { get; set; }
     }
 }

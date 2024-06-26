@@ -87,7 +87,11 @@ namespace TestProject.OrderTest
                 using (var writer = new StreamWriter(filePath, append: true))
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
-                    csv.WriteRecord(ordercode);
+                    csv.WriteRecord(new
+                    {
+                        Code = ordercode,
+                        ResponeCode = 200,
+                    });
                     writer.WriteLine();
                 }
             }
@@ -101,7 +105,7 @@ namespace TestProject.OrderTest
             var url = "/api/order/get-order-by-orderCode/"+ testData.Code;
             var response = await _client.GetAsync(url);
             var responseCode = (int)response.StatusCode;
-            Assert.AreEqual(200, responseCode, "Error for OrderCode: " + testData);
+            Assert.AreEqual(testData.ResponeCode, responseCode, "Error for OrderCode: " + testData);
         }
     }
 }
