@@ -63,24 +63,17 @@ Technologies:
 |                       | UC37 - Admin can Update User                                                |   
 |                       | UC38 - Admin can Delete User                                                |
 | Manage Profile        | UC25 - User can change their profile information                            |                                
-|                                                                                                     |
 | Change Password       | UC26 - User can change their account password                               |
-|                                                                                                     |
 | Manage Default Address| UC27 - Customer can add a delivery address                                  |                                
 |                       | UC28 - Customer can delete a delivery address                               |        
 |                       | UC29 - Customer can update a delivery address                               |  
-|                                                                                                     |
 | FeedBack              | UC22 - Customer - Create Feedback                                           |                                
 |                       | UC23 - User Update Feedback                                                 |         
 |                       | UC24 - User Delete Feedback                                                 |  
-|                       |                                                                             |
-|                                                                                                     |
 | BLog                  | UC39 - Admin/Staff can create Blog                                          |                                
 |                       | UC40 - Admin/Staff can update Blog                                          |        
 |                       | UC41 - Admin/Staff can delete Blog                                          |  
 |                       | UC42 - Guest can view Blog                                                  |
-|                       |                                                                             |
-|                                                                                                     |
 | Manage User Orders    |                                                                             |                                
 |                       |                                                                             |        
 |                       |                                                                             |  
@@ -92,7 +85,6 @@ Technologies:
 |                       |                                                                             |  
 |                       |                                                                             |
 |                       |                                                                             |
-|                                                                                                     |
 | Purchase Product      |                                                                             |                                
 |                       |                                                                             |        
 |                       |                                                                             |  
