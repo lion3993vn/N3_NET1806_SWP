@@ -37,7 +37,6 @@ Technologies:
 |                       | UC02 - Guest can login to their user account                                |        
 |                       | UC03 - Guest can select Forget Password to retrieve access to their account |  
 |                       | UC04 - Guest can login to their user account via google platform            |
-|                                                                                                     |
 | Product Management    | UC05 - Admin and Staff can Add product                                      |                                
 |                       | UC06 - Admin and Staff can update Product                                   |        
 |                       | UC07 - Admin and Staff can Delete Product                                   |  
@@ -63,7 +62,6 @@ Technologies:
 |                       | UC36 - Admin can Add User                                                   |        
 |                       | UC37 - Admin can Update User                                                |   
 |                       | UC38 - Admin can Delete User                                                |
-|                                                                                                     |
 | Manage Profile        | UC25 - User can change their profile information                            |                                
 |                                                                                                     |
 | Change Password       | UC26 - User can change their account password                               |
