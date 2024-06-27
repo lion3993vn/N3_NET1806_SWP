@@ -85,7 +85,7 @@ Technologies:
 |                       |                                                                             |  
 |                       |                                                                             |
 |                       |                                                                             |
-| Purchase Product      |                                                                             |                                
+| Purchase Product      | UC17 - Customer can buy products in the shopping cart                       |                                
 |                       |                                                                             |        
 |                       |                                                                             |  
 |                       |                                                                             |
@@ -94,7 +94,7 @@ Technologies:
 
 | Name                  |                Git Account                                                  |        UseCase      |
 |-----------------------|-----------------------------------------------------------------------------|---------------------|    
-| Pham Van Tuan Hieu    | (https://github.com/lion3993vn)                                             |                     |                                    
+| Pham Van Tuan Hieu    | (https://github.com/lion3993vn)                                             | UC (17)             |                                    
 | Lương Công Bằng       | (https://github.com/cong-bang)                                              | UC (22,23,24)       |            
 | Nguyễn Kiến Minh      | (https://github.com/nguyenkienminh)                                         | UC (25,26,27,28,29) |      
 | Nguyễn Gia Bảo Anh    | (https://github.com/alicee-19)                                              | UC(3)               |    
