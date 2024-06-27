@@ -64,13 +64,13 @@ Technologies:
 |                       | UC37 - Admin can Update User                                                |   
 |                       | UC38 - Admin can Delete User                                                |
 |                                                                                                     |
-| Manage Profile        | UC24 - User can change their profile information                            |                                
+| Manage Profile        | UC25 - User can change their profile information                            |                                
 |                                                                                                     |
-| Change Password       | UC25 - User can change their account password                               |
+| Change Password       | UC26 - User can change their account password                               |
 |                                                                                                     |
-| Manage Default Address| UC26 - Customer can add a delivery address                                  |                                
-|                       | UC27 - Customer can delete a delivery address                               |        
-|                       | UC28 - Customer can update a delivery address                               |  
+| Manage Default Address| UC27 - Customer can add a delivery address                                  |                                
+|                       | UC28 - Customer can delete a delivery address                               |        
+|                       | UC29 - Customer can update a delivery address                               |  
 |                                                                                                     |
 | FeedBack              | UC22 - Customer - Create Feedback                                           |                                
 |                       | UC23 - User Update Feedback                                                 |         
@@ -105,8 +105,8 @@ Technologies:
 | Name                  |                Git Account                                                  |        UseCase      |
 |-----------------------|-----------------------------------------------------------------------------|---------------------|    
 | Pham Van Tuan Hieu    | (https://github.com/lion3993vn)                                             |                     |                                    
-| Lương Công Bằng       | (https://github.com/cong-bang)                                              | UC (1)              |            
-| Nguyễn Kiến Minh      | (https://github.com/nguyenkienminh)                                         | UC (24,25,26,27,28) |      
+| Lương Công Bằng       | (https://github.com/cong-bang)                                              | UC (22,23,24)              |            
+| Nguyễn Kiến Minh      | (https://github.com/nguyenkienminh)                                         | UC (25,26,27,28,29) |      
 | Nguyễn Gia Bảo Anh    | (https://github.com/alicee-19)                                              | UC(3)               |    
 | Võ Thị Mai Hoa        | (https://github.com/vohoa2004)                                              | UC(5,6,7)           |  
 
