@@ -98,7 +98,7 @@ Technologies:
 | Lương Công Bằng       | (https://github.com/cong-bang)                                              | UC (22,23,24)       |            
 | Nguyễn Kiến Minh      | (https://github.com/nguyenkienminh)                                         | UC (25,26,27,28,29) |      
 | Nguyễn Gia Bảo Anh    | (https://github.com/alicee-19)                                              | UC(3)               |    
-| Võ Thị Mai Hoa        | (https://github.com/vohoa2004)                                              | UC(5,6,7)           |  
+| Võ Thị Mai Hoa        | (https://github.com/vohoa2004)                                              | UC(39, 40, 41, 42)           |  
 
 
 #### References:
