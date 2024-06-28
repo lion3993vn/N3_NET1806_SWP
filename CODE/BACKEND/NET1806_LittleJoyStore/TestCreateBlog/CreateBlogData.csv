@@ -1,0 +1,5 @@
+﻿Testcase,UserId,Title,Banner,Content,ResponseCode,Message
+Admin Add New Blog With Valid Data,3,Benefits of Organic Milk,/images/banner2.jpg,Organic milk benefits,200,Added new blog successfully!
+Staff Add New Blog With Valid Data,3,Benefits of Organic Milk,/images/banner2.jpg,Organic milk benefits,200,Added new blog successfully!
+Staff Add New Blog With Data Missing Required Fields,3,,/images/banner2.jpg,Organic milk benefits,400,Title is required.
+Regular User Add New Blog,2,New brand of Organic Milk,/images/banner2.jpg,Organic milk benefits,403,

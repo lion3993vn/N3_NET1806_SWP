@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 using NET1806_LittleJoy.Repository.Commons;
 using NET1806_LittleJoy.Repository.Entities;
 using NET1806_LittleJoy.Repository.Repositories;
@@ -20,7 +21,7 @@ namespace NET1806_LittleJoy.Service.Services
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
 
-        public BlogService(IBlogRepository blogRepository, IMapper mapper, IUserRepository userRepository) 
+        public BlogService(IBlogRepository blogRepository, IMapper mapper, IUserRepository userRepository)
         {
             _blogRepository = blogRepository;
             _mapper = mapper;
@@ -29,15 +30,34 @@ namespace NET1806_LittleJoy.Service.Services
 
         public async Task<BlogModel> CreateNewBlogAsync(BlogModel model)
         {
-            if(model == null)
+            if (model == null)
             {
                 return null;
             }
+
+            // Check for required fields
+            if (string.IsNullOrEmpty(model.Title))
+            {
+                throw new ArgumentException("Title is required.");
+            }
+            if (string.IsNullOrEmpty(model.Banner))
+            {
+                throw new ArgumentException("Banner is required.");
+            }
+            if (string.IsNullOrEmpty(model.Content))
+            {
+                throw new ArgumentException("Content is required.");
+            }
+            if (model.UserId <= 0)
+            {
+                throw new ArgumentException("Valid UserId is required.");
+            }
+
             var blogModel = _mapper.Map<Post>(model);
             blogModel.UnsignTitle = StringUtils.ConvertToUnSign(blogModel.Title);
             blogModel.Date = DateTime.UtcNow.AddHours(7);
             var blog = await _blogRepository.CreateNewBlogAsync(blogModel);
-            if(blog != null)
+            if (blog != null)
             {
                 return _mapper.Map<BlogModel>(blog);
             }
@@ -45,7 +65,7 @@ namespace NET1806_LittleJoy.Service.Services
             {
                 return null;
             }
-            
+
         }
 
         public async Task<Pagination<BlogModel>> GetListBlogFilterAsync(PaginationParameter paging, BlogFilterModel filter)
@@ -63,10 +83,10 @@ namespace NET1806_LittleJoy.Service.Services
 
             List<UserJoinPost> joinPosts = new List<UserJoinPost>
                 (join.Select(x => new UserJoinPost
-            {
+                {
                     UserId = x.UserId,
                     UserName = x.UserName,
-            })).ToList();
+                })).ToList();
             #endregion
 
             var list = await _blogRepository.GetListBlogFilterAsync(paging, filter, joinPosts);
@@ -81,7 +101,7 @@ namespace NET1806_LittleJoy.Service.Services
         public async Task<BlogModel> GetBlogByIdAsync(int Id)
         {
             var result = await _blogRepository.GetBlogByIdAsync(Id);
-            if(result == null)
+            if (result == null)
             {
                 return null;
             }
@@ -91,7 +111,7 @@ namespace NET1806_LittleJoy.Service.Services
         public async Task<Pagination<BlogModel>> GetListBlogAsync(PaginationParameter paginationParameter)
         {
             var listBlog = await _blogRepository.GetListBlogAsync(paginationParameter);
-            if(listBlog == null)
+            if (listBlog == null)
             {
                 return null;
             }
@@ -102,7 +122,7 @@ namespace NET1806_LittleJoy.Service.Services
         public async Task<bool> RemoveBlogAsync(int id)
         {
             var blog = await _blogRepository.GetBlogByIdAsync(id);
-            if(blog == null)
+            if (blog == null)
             {
                 return false;
             }
@@ -115,12 +135,19 @@ namespace NET1806_LittleJoy.Service.Services
 
         public async Task<BlogModel> UpdateBlogAsync(BlogModel blog)
         {
-            if(blog == null)
+            if (blog == null)
             {
                 return null;
             }
+
+            if (blog.Title.IsNullOrEmpty())
+            {
+                throw new Exception("Title is required");
+            }
+
             var blogExist = await _blogRepository.GetBlogByIdAsync(blog.Id);
-            if(blogExist == null)
+
+            if (blogExist == null)
             {
                 return null;
             }

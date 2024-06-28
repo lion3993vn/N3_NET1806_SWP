@@ -1,0 +1,5 @@
+﻿Testcase,Id,UserId,ResponseCode,Message
+Admin deletes a blog successfully,27,16,200,Remove blog successfully
+Staff deletes a blog successfully,28,3,200,Remove blog successfully
+Delete a non-existent blog,-1,3,404,Blog not found
+Regular user tries to delete a blog,29,2,403,

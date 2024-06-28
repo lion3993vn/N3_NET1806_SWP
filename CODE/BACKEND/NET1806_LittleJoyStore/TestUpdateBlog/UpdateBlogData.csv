@@ -1,0 +1,7 @@
+﻿Testcase,Id,UserId,Title,Banner,Content,ResponseCode,Message
+Update a blog with valid data,25,3,Updated Title,Updated Banner,Updated Content,200,Updated blog successfully!
+Update a non-existent blog,-1,3,Non-existent Title,Non-existent Banner,Non-existent Content,404,Blog not found
+Update a blog with missing title,25,3,,Valid Banner,Valid Content,400,Title is required
+Admin updates the blog successfully,24,16,Valid Title,Valid Banner,Valid Content,200,Updated blog successfully!
+Staff updates the blog successfully,23,3,Valid Title 2,Valid Banner 2,Valid Content 2,200,Updated blog successfully!
+Regular user tries to update the blog,22,2,Valid Title 3,Valid Banner 3,Valid Content 3,403,User does not have permission to update the blog

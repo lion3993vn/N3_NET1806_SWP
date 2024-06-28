@@ -1,0 +1,3 @@
+﻿Testcase,Id,ResponseCode
+View an existed blog,9,200
+View a non-existed blog,-1,404

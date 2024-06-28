@@ -115,7 +115,11 @@ namespace NET1806_LittleJoy.API.Controllers
                 }
                 else
                 {
-                    return Ok(result);
+                    return Ok(new ResponseModels
+                    {
+                        HttpCode = StatusCodes.Status200OK,
+                        Message = "Added new blog successfully!"
+                    });
                 }
             }
             catch (Exception ex)
@@ -146,15 +150,19 @@ namespace NET1806_LittleJoy.API.Controllers
                 var result = await _blogService.UpdateBlogAsync(blogModel);
                 if (result == null)
                 {
-                    return BadRequest(new ResponseModels
+                    return NotFound(new ResponseModels
                     {
-                        HttpCode = StatusCodes.Status400BadRequest,
-                        Message = "Can not update this blog",
+                        HttpCode = StatusCodes.Status404NotFound,
+                        Message = "Blog not found",
                     });
                 }
                 else
                 {
-                    return Ok(result);
+                    return Ok(new ResponseModels
+                    {
+                        HttpCode = StatusCodes.Status200OK,
+                        Message = "Updated blog successfully!"
+                    });
                 }
             }
             catch(Exception ex)
@@ -183,10 +191,10 @@ namespace NET1806_LittleJoy.API.Controllers
                     });
                 }
 
-                return BadRequest(new ResponseModels
+                return NotFound(new ResponseModels
                 {
-                    HttpCode = StatusCodes.Status400BadRequest,
-                    Message = "Can not remove blog"
+                    HttpCode = StatusCodes.Status404NotFound,
+                    Message = "Blog not found"
                 });
             }catch(Exception ex)
             {
