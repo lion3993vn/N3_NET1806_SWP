@@ -72,10 +72,14 @@ namespace NET1806_LittleJoy.Service.Services
         {
             try
             {
+                if(!model.Rating.HasValue)
+                {
+                    throw new Exception("Rating is empty");
+                }
 
                 if (model.Rating < 1 || model.Rating > 5)
                 {
-                    return false;
+                    throw new Exception("Rating error");
                 }
 
                 var feedback = _mapper.Map<Feedback>(model);
@@ -93,92 +97,109 @@ namespace NET1806_LittleJoy.Service.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Fail to create FeedBack {ex.Message}");
-                return false;
+                throw ex; //400
             }
         }
 
         public async Task<bool> RemoveFeedBackByIdAsync(int id, int UserId)
         {
-            var remove = await _feedBackRepo.GetFeedBackByIdAsync(id);
-
-            if (remove == null)
+            
+            try
             {
-                return false;
-            }
-            else
-            {
-                var user = await _userService.GetUserByIdAsync(remove.UserId); // lay user tu feedback trong he thong
-
-                if (user != null)
+                var remove = await _feedBackRepo.GetFeedBackByIdAsync(id);
+                if (remove == null)
                 {
-                    if (user.Id != UserId)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return await _feedBackRepo.RemoveFeedBackAsync(remove);
-                    }
+                    throw new Exception("Feedback is not exist");
                 }
-  
+                else
+                {
+                    var user = await _userService.GetUserByIdAsync(remove.UserId); // lay user tu feedback trong he thong
+
+                    if (user != null)
+                    {
+                        if (user.Id != UserId)
+                        {
+                            throw new Exception("Feedback of user is not exist");
+                        }
+                        else
+                        {
+                            return await _feedBackRepo.RemoveFeedBackAsync(remove);
+                        }
+                    }
+
+                }
+            } catch (Exception ex)
+            {
+                throw ex;
             }
+
+            
             return false;
                     
         }
 
         public async Task<FeedBackModel> UpdateFeedBackAsync(FeedBackModel model)
         {
-
-            var feedBackPlace = await _feedBackRepo.GetFeedBackByIdAsync(model.Id);
-
-            if (feedBackPlace == null)
+            try
             {
-                return null;
-            }
-            else
-            {
-
-                var user = await _userService.GetUserByIdAsync(feedBackPlace.UserId); // lay user tu feedback trong he thong
-
-                if (user == null)
+                var feedBackPlace = await _feedBackRepo.GetFeedBackByIdAsync(model.Id);
+                if (!model.Rating.HasValue)
                 {
-                    return null;
+                    throw new Exception("Rating is empty");
+                }
+
+                if (feedBackPlace == null)
+                {
+                    throw new Exception("Feedback is not exist");
                 }
                 else
                 {
-                    if (user.Id != model.UserId)
+
+                    var user = await _userService.GetUserByIdAsync(feedBackPlace.UserId); // lay user tu feedback trong he thong
+
+                    if (user == null)
                     {
-                        return null;
+                        throw new Exception("Feedback of user is not exist");
                     }
-                    else 
+                    else
                     {
-                        Feedback feedBackModify = new Feedback()
+                        if (user.Id != model.UserId)
                         {
-                            Id = model.Id,
-                            ProductId = feedBackPlace.ProductId,
-                            UserId = model.UserId,
-                            Comment = model.Comment,
-                            Rating = model.Rating,
-                            Date = DateTime.UtcNow.AddHours(7)
-                        };
-
-                        feedBackPlace.Id = feedBackModify.Id;
-                        feedBackPlace.UserId = feedBackModify.UserId;
-                        feedBackPlace.ProductId = feedBackModify.ProductId;
-                        feedBackPlace.Comment = feedBackModify.Comment;
-                        feedBackPlace.Rating = feedBackModify.Rating;
-                        feedBackPlace.Date = feedBackModify.Date;
-
-                        var updateFeedBack = await _feedBackRepo.UpdateFeedBackAsync(feedBackPlace);
-
-                        if (updateFeedBack != null)
+                            throw new Exception("Feedback of user is not exist");
+                        }
+                        else
                         {
-                            return _mapper.Map<FeedBackModel>(updateFeedBack);
+                            Feedback feedBackModify = new Feedback()
+                            {
+                                Id = model.Id,
+                                ProductId = feedBackPlace.ProductId,
+                                UserId = model.UserId,
+                                Comment = model.Comment,
+                                Rating = model.Rating,
+                                Date = DateTime.UtcNow.AddHours(7)
+                            };
+
+                            feedBackPlace.Id = feedBackModify.Id;
+                            feedBackPlace.UserId = feedBackModify.UserId;
+                            feedBackPlace.ProductId = feedBackModify.ProductId;
+                            feedBackPlace.Comment = feedBackModify.Comment;
+                            feedBackPlace.Rating = feedBackModify.Rating;
+                            feedBackPlace.Date = feedBackModify.Date;
+
+                            var updateFeedBack = await _feedBackRepo.UpdateFeedBackAsync(feedBackPlace);
+
+                            if (updateFeedBack != null)
+                            {
+                                return _mapper.Map<FeedBackModel>(updateFeedBack);
+                            }
                         }
                     }
                 }
+            } catch (Exception ex)
+            {
+                throw ex;
             }
+            
 
             
             return null;
@@ -186,7 +207,6 @@ namespace NET1806_LittleJoy.Service.Services
 
         public async Task<double> AverageFeedBackInProduct(int productId)
         {
-
             return await _feedBackRepo.AverageRatingAsync(productId);
         }
 

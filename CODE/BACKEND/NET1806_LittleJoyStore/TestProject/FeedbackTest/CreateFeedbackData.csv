@@ -1,0 +1,5 @@
+﻿UserId,ProductId,Comment,Rating,ResponseCode
+1,2,Sữa tốt,5,200
+1,2,"",4,200
+1,2,"",,400
+
