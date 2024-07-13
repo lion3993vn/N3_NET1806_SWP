@@ -26,7 +26,7 @@ namespace NET1806_LittleJoy.API.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "STAFF,ADMIN")]
+        [Authorize(Roles = "STAFF,ADMIN")]
         public async Task<IActionResult> GetAllUserByRoleIdAndStatusAsync([FromQuery] PaginationParameter paging, int roleId, bool status)
         {
             try
@@ -199,7 +199,7 @@ namespace NET1806_LittleJoy.API.Controllers
 
 
         [HttpDelete]
-        //[Authorize(Roles = "STAFF,ADMIN, USER")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> DeleteUserAsyncById(int Id)
         {
             try
@@ -236,7 +236,7 @@ namespace NET1806_LittleJoy.API.Controllers
 
 
         [HttpPut]
-        //[Authorize(Roles = "STAFF,ADMIN")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> UpdateUserAsync([FromBody] UpdateUserRequestModel request)
         {
             try
@@ -247,6 +247,7 @@ namespace NET1806_LittleJoy.API.Controllers
                     PhoneNumber = request.PhoneNumber,
                     Status = request.Status,
                     Fullname = request.Fullname,
+                    Avatar = request.Avatar,
                     RoleId = request.RoleId,
                 };
 
@@ -254,10 +255,10 @@ namespace NET1806_LittleJoy.API.Controllers
 
                 if (result == null)
                 {
-                    return NotFound(new ResponseModels()
+					return NotFound(new ResponseModels()
                     {
                         HttpCode = StatusCodes.Status404NotFound,
-                        Message = "Can not update this User"
+                        Message = "Account not found"
                     });
                 }
 

@@ -437,8 +437,8 @@ namespace NET1806_LittleJoy.Service.Services
 
             if(model.RoleId == null)
             {
-                return null;
-            }
+				throw new Exception("Role ID is required");
+			}
 
             var userModify = _mapper.Map<User>(model);
 
@@ -447,7 +447,7 @@ namespace NET1806_LittleJoy.Service.Services
             if (userPlace == null)
             {
                 return null;
-            }
+			}
 
             if (userModify.Fullname != "".Trim() && userModify.Fullname != null)
             {
@@ -482,6 +482,11 @@ namespace NET1806_LittleJoy.Service.Services
             {
                 userModify.PhoneNumber = userPlace.PhoneNumber;
             }
+
+            if (userModify.RoleId < 1 || userModify.RoleId > 3)
+            {
+				throw new Exception("Invalid Role ID");
+			}
 
             if (userModify.Status == null)
             {

@@ -4,5 +4,5 @@ Valid: Add account with only required fields,2,,,1,,testingValid2@gmail.com,,076
 Invalid: Add account with existed email,2,invalidEmail,123,1,,ngbaoanh.19@gmail.com,,0756437485,,400,Account already exists.
 Invalid: Add account with existed phone,2,invalidPhone,123,1,,newEmail@gmail.com,,0902873625,,400,Phone Number is exist
 Invalid: Add account with existed username,2,validTestcase,123,1,,newEmail@gmail.com,,0756437485,,400,Username is existed
-Authorize: Staff role can not add account,4,invalidAuthorize,,1,,testingAuthorize@gmail.com,,0767276363,,403,Forbidden
+Authorize: Staff role can not add account,6,invalidAuthorize,,1,,testingAuthorize@gmail.com,,0767276363,,403,Forbidden
 Authorize: User role can not add account,3,invalidAuthorize,,1,,testingAuthorize@gmail.com,,0767276363,,403,Forbidden

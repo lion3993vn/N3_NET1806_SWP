@@ -1,0 +1,5 @@
+﻿Testcase,TesterId,RoleId,Status,ResponseCode
+Valid: Admin accounts by status and role,2,1,true,200
+Valid: Staff get accounts by status and role,6,1,true,200
+Invalid: Get account with invalid role ID,2,9,false,404
+Authorize: User role can not get account list,3,2,1,403

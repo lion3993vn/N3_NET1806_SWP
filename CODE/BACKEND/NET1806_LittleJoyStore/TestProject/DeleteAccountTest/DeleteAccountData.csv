@@ -1,0 +1,5 @@
+﻿Testcase,TesterId,AccountId,ResponseCode,ResponseMessage
+Valid: delete an account with valid ID,2,46,200,Remove User success
+Invalid: delete an unexisted account,2,1,404,The user can not remove
+Authorize: user can not delete an account,3,47,403,Forbidden
+Authorize: staff can not delete an account,6,47,403,Forbidden

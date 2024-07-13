@@ -1,0 +1,9 @@
+﻿Testcase,TesterId,AccountId,Fullname,RoleId,Status,Avatar,PhoneNumber,MainAddress,ResponseCode,ResponseMessage
+Valid: Update account with all valid field,2,43,Valid Case,1,true,avatarLink,0945676665,mainAddress,200,Update User success
+Valid: Update user info with only valid Role ID,2,43,,2,true,,,,200,Update User success
+Invalid: Enter an unexisted accountId,2,99,Invalid AccountId,1,true,avatarLink,0902000000,mainAddress,404,Account not found
+Invalid: Enter an invalid phoneNumber format,2,43,Invalid Phonenumber format,1,true,avatarLink,090200,mainAddress,400,Wrong Phone Number Format
+Invalid: Enter an existed phoneNumber,2,43,Existed Phonenumber,1,true,avatarLink,0902873625,mainAddress,400,Phone Number is exist
+Invalid: Update user info with invalid role ID,2,43,InvalidRole,7,true,avatarLink,0945676000,mainAddress,400,Invalid Role ID
+Authorize: Staff role can not add account,4,43,Invalid Authorize,1,true,avatarLink,0945676665,mainAddress,403,Forbidden
+Authorize: User role can not add account,3,43,Invalid Authorize,1,true,avatarLink,0945676665,mainAddress,403,Forbidden
