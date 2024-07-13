@@ -1,0 +1,8 @@
+﻿Testcase,CreatorId,UserName,Password,RoleId,FullName,Email,Avatar,PhoneNumber,MainAddress,ResponseCode,ResponseMessage
+Valid: Add account with all valid field,2,validTestcase,123,1,Valid Account,testingValid@gmail.com,avatarLink,0902873625,mainAddress,200,Add User success
+Valid: Add account with only required fields,2,,,1,,testingValid2@gmail.com,,0767200003,,200,Add User success
+Invalid: Add account with existed email,2,invalidEmail,123,1,,ngbaoanh.19@gmail.com,,0756437485,,400,Account already exists.
+Invalid: Add account with existed phone,2,invalidPhone,123,1,,newEmail@gmail.com,,0902873625,,400,Phone Number is exist
+Invalid: Add account with existed username,2,validTestcase,123,1,,newEmail@gmail.com,,0756437485,,400,Username is existed
+Authorize: Staff role can not add account,4,invalidAuthorize,,1,,testingAuthorize@gmail.com,,0767276363,,403,Forbidden
+Authorize: User role can not add account,3,invalidAuthorize,,1,,testingAuthorize@gmail.com,,0767276363,,403,Forbidden

@@ -176,7 +176,7 @@ namespace NET1806_LittleJoy.Service.Services
                     }
                     else if (checkUsername != null)
                     {
-                        throw new Exception("Tài khoản đã tồn tại");
+                        throw new Exception("Username is existed");
                     }
 
                     newUser.PasswordHash = PasswordUtils.HashPassword(model.Password);
@@ -338,7 +338,7 @@ namespace NET1806_LittleJoy.Service.Services
 
                     if (checkUsername != null)
                     {
-                        throw new Exception("Tài khoản đã tồn tại");
+                        throw new Exception("Username is existed");
                     }
                 }
                 

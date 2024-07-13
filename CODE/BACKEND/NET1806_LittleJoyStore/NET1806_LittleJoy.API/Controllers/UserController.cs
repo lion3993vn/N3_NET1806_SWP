@@ -151,7 +151,7 @@ namespace NET1806_LittleJoy.API.Controllers
 
 
         [HttpPost]
-        //[Authorize(Roles = "STAFF,ADMIN, USER")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> AddUserAsync([FromBody] UserRequestModel request)
         {
             try

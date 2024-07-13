@@ -1,5 +1,0 @@
-﻿Username,Password,ResponseCode
-admin,admin123,200
-staff,staff123,401
-admin,123,401
-user,user,401
